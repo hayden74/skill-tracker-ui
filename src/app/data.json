@@ -1,0 +1,382 @@
+[
+  {
+    "id": "f327eb8a-8aff-4bb6-be53-635bcafa448a",
+    "name": "John Smith",
+    "mobile": "0402471001",
+    "email": "john.smith@cognizant.com",
+    "associateId": "2020100",
+    "skills": [
+      {
+        "name": "SPRING",
+        "level": 17,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "COMMUNICATION",
+        "level": 16,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "AWS",
+        "level": 15,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "HIBERNATE",
+        "level": 15,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "HTML_CSS_JAVASCRIPT",
+        "level": 14,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "GIT",
+        "level": 14,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "RESTFUL",
+        "level": 13,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "ATTITUDE",
+        "level": 12,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "SPOKEN",
+        "level": 11,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "REACT",
+        "level": 8,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "DOCKER",
+        "level": 6,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "ANGULAR",
+        "level": 5,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "JENKINS",
+        "level": 2,
+        "type": "TECHNICAL"
+      }
+    ],
+    "createdAt": "2022-07-25T18:35:24Z",
+    "updatedAt": "2022-07-25T18:35:24Z"
+  },
+  {
+    "id": "f327eb8a-8aff-4bb6-be53-635bcafa448b",
+    "name": "Hayden Adams",
+    "mobile": "0402471002",
+    "email": "hayden.adams@cognizant.com",
+    "associateId": "2020101",
+    "skills": [
+      {
+        "name": "ATTITUDE",
+        "level": 18,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "REACT",
+        "level": 18,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "GIT",
+        "level": 18,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "RESTFUL",
+        "level": 17,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "COMMUNICATION",
+        "level": 16,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "HTML_CSS_JAVASCRIPT",
+        "level": 16,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "AWS",
+        "level": 15,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "SPOKEN",
+        "level": 14,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "HIBERNATE",
+        "level": 14,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "SPRING",
+        "level": 12,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "DOCKER",
+        "level": 6,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "JENKINS",
+        "level": 5,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "ANGULAR",
+        "level": 4,
+        "type": "TECHNICAL"
+      }
+    ],
+    "createdAt": "2022-07-27T18:40:24Z",
+    "updatedAt": "2022-07-25T18:40:24Z"
+  },
+  {
+    "id": "f327eb8a-8aff-4bb6-be53-635bcafa448c",
+    "name": "Michael Kumar",
+    "mobile": "0402471003",
+    "email": "michael.kumar@cognizant.com",
+    "associateId": "2020202",
+    "skills": [
+      {
+        "name": "GIT",
+        "level": 18,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "REACT",
+        "level": 17,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "COMMUNICATION",
+        "level": 16,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "DOCKER",
+        "level": 16,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "SPOKEN",
+        "level": 15,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "AWS",
+        "level": 15,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "ANGULAR",
+        "level": 14,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "RESTFUL",
+        "level": 14,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "HIBERNATE",
+        "level": 14,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "ATTITUDE",
+        "level": 13,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "SPRING",
+        "level": 12,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "HTML_CSS_JAVASCRIPT",
+        "level": 6,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "JENKINS",
+        "level": 6,
+        "type": "TECHNICAL"
+      }
+    ],
+    "createdAt": "2022-07-28T18:45:24Z",
+    "updatedAt": "2022-07-25T18:45:24Z"
+  },
+  {
+    "id": "f327eb8a-8aff-4bb6-be53-635bcafa448f",
+    "name": "Maya Janabi",
+    "mobile": "0402471005",
+    "email": "maya.janabi@cognizant.com",
+    "associateId": "2020203",
+    "skills": [
+      {
+        "name": "ATTITUDE",
+        "level": 18,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "GIT",
+        "level": 18,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "DOCKER",
+        "level": 17,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "REACT",
+        "level": 16,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "AWS",
+        "level": 15,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "HIBERNATE",
+        "level": 14,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "SPOKEN",
+        "level": 13,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "ANGULAR",
+        "level": 13,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "SPRING",
+        "level": 12,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "RESTFUL",
+        "level": 11,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "JENKINS",
+        "level": 8,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "HTML_CSS_JAVASCRIPT",
+        "level": 7,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "COMMUNICATION",
+        "level": 4,
+        "type": "NON_TECHNICAL"
+      }
+    ],
+    "createdAt": "2022-07-10T18:42:24Z",
+    "updatedAt": "2022-07-21T18:45:24Z"
+  },
+  {
+    "id": "f327eb8a-8aff-4bb6-be53-635bcafa448g",
+    "name": "Sadam Ali",
+    "mobile": "0402471006",
+    "email": "sadam.ali@cognizant.com",
+    "associateId": "2020204",
+    "skills": [
+      {
+        "name": "ATTITUDE",
+        "level": 18,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "REACT",
+        "level": 18,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "GIT",
+        "level": 18,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "RESTFUL",
+        "level": 17,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "COMMUNICATION",
+        "level": 16,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "HTML_CSS_JAVASCRIPT",
+        "level": 16,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "AWS",
+        "level": 15,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "SPOKEN",
+        "level": 14,
+        "type": "NON_TECHNICAL"
+      },
+      {
+        "name": "HIBERNATE",
+        "level": 14,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "SPRING",
+        "level": 12,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "DOCKER",
+        "level": 6,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "JENKINS",
+        "level": 5,
+        "type": "TECHNICAL"
+      },
+      {
+        "name": "ANGULAR",
+        "level": 4,
+        "type": "TECHNICAL"
+      }
+    ],
+    "createdAt": "2022-07-11T18:43:24Z",
+    "updatedAt": "2022-07-22T18:45:24Z"
+  }
+]
