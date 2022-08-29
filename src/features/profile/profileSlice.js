@@ -10,11 +10,9 @@ const initialState = {
 
 export const fetchProfiles = createAsyncThunk('profiles/searchProfiles', async () => {
   const response = await client.get('admin/Skill/REACT?page=0&size=5')
-  console.log('data: ', response.data.profiles)
   return response.data.profiles
 })
 
-// TODO: check data issue in java side - duplicate profiles loaded
 const profileSlice = createSlice({
   name: 'profiles',
   initialState,
@@ -30,7 +28,6 @@ const profileSlice = createSlice({
       })
       .addCase(fetchProfiles.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        // Add any fetched posts to the array
         state.items = action.payload
       })
       .addCase(fetchProfiles.rejected, (state, action) => {
