@@ -1,19 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit'
-import data from '../../app/data.json'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+//import data from '../../app/data.json'
+import { client } from '../../api/client'
 
 const initialState = {
-  items: data,
+  items: [],
   status: 'idle',
   error: null
 }
 
+export const fetchProfiles = createAsyncThunk('profiles/searchProfiles', async () => {
+  const response = await client.get('admin/Skill/REACT?page=0&size=5')
+  console.log('data: ', response.data.profiles)
+  return response.data.profiles
+})
+
+// TODO: check data issue in java side - duplicate profiles loaded
 const profileSlice = createSlice({
-  name: 'profile',
+  name: 'profiles',
   initialState,
   reducers: {
     profileAdded (state, action) {
       state.push(action.payload)
     },
+  },
+  extraReducers (builder) {
+    builder
+      .addCase(fetchProfiles.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchProfiles.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        // Add any fetched posts to the array
+        state.items = action.payload
+      })
+      .addCase(fetchProfiles.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
   }
 })
 
@@ -21,4 +44,4 @@ export const { profileAdded } = profileSlice.actions
 
 export default profileSlice.reducer
 
-export const selectAllProfiles = state => state.profile.items
+export const selectAllProfiles = state => state.profiles.items
