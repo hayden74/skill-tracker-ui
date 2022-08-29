@@ -6,7 +6,6 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import AssociateView from './features/associate/View'
 import Profile from './features/profile/Profile'
 
 const container = document.getElementById('root')
@@ -19,7 +18,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App/>}>
             <Route index element={<Profile/>}/>
-            <Route path="associate-view" element={<AssociateView/>}/>
+            {/*<Route path="associate-view" element={<AssociateView/>}/>*/}
             <Route path="admin-view" element={<Profile/>}/>
           </Route>
         </Routes>
