@@ -11,7 +11,7 @@ function Profile () {
     isSuccess,
     isError,
     error
-  } = useGetProfilesQuery()
+  } = useGetProfilesQuery({ page: 0, size: 5, criteria: 'Skill', keyword: 'AWS' })
 
   let content
 
@@ -20,7 +20,6 @@ function Profile () {
   } else if (isSuccess) {
     content = <ProfileList profiles={data.profiles}/>
   } else if (isError) {
-
     const msg = error.error ? error.error : error.data.message
     content = <Alert key={'warning'} variant={'warning'}>
       <strong>Error occurred:</strong> {msg}

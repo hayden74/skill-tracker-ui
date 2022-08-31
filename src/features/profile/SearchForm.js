@@ -6,22 +6,26 @@ import { Formik } from 'formik'
 
 const schema = yup.object().shape({
   criteria: yup.string().required(),
-  name: yup.string().required(),
-  associateId: yup.string().required(),
-  skill: yup.string().required(),
+  // name: yup.string().required(),
+  // associateId: yup.string().required(),
+  // skill: yup.string().required(),
 })
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 function SearchForm () {
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={console.log}
-      handleChange2={(values) => {console.log(values)}}
+      // onSubmit={console.log}
+      onSubmit={async (values) => {
+        await sleep(1000)
+        alert(JSON.stringify(values, null, 2))
+      }}
       initialValues={{
-        criteria: 'name',
+        criteria: 'Skill',
         name: '',
         associateId: '',
-        skill: '',
+        skill: 'AWS',
       }}
     >
       {props => {
@@ -48,8 +52,8 @@ function SearchForm () {
                   name="criteria"
                   type="radio"
                   id="criteria-name"
-                  value="name"
-                  defaultChecked={values.criteria === 'name'}
+                  value="Name"
+                  defaultChecked={values.criteria === 'Name'}
                   onChange={e => {
                     resetForm({ values: { name: '', associateId: '', skill: '' } })
                     handleChange(e)
@@ -61,8 +65,8 @@ function SearchForm () {
                   name="criteria"
                   type="radio"
                   id="criteria-associate-id"
-                  value="associateId"
-                  defaultChecked={values.criteria === 'associateId'}
+                  value="AssociateId"
+                  defaultChecked={values.criteria === 'AssociateId'}
                   onChange={e => {
                     resetForm({ values: { name: '', associateId: '', skill: '' } })
                     handleChange(e)
@@ -75,7 +79,7 @@ function SearchForm () {
                   type="radio"
                   id="criteria-skill"
                   value="skill"
-                  defaultChecked={values.criteria === 'skill'}
+                  defaultChecked={values.criteria === 'Skill'}
                   onChange={e => {
                     resetForm({ values: { name: '', associateId: '', skill: '' } })
                     handleChange(e)
@@ -90,9 +94,9 @@ function SearchForm () {
               </Form.Label>
               <Col sm={4}>
                 <Form.Control
-                  name="name"
+                  name="Name"
                   type="text"
-                  disabled={values.criteria !== 'name'}
+                  disabled={values.criteria !== 'Name'}
                   value={values.name}
                   onChange={handleChange}
                 />
@@ -105,9 +109,9 @@ function SearchForm () {
               </Form.Label>
               <Col sm={4}>
                 <Form.Control
-                  name="associateId"
+                  name="AssociateId"
                   type="text"
-                  disabled={values.criteria !== 'associateId'}
+                  disabled={values.criteria !== 'AssociateId'}
                   value={values.associateId}
                   onChange={handleChange}
                 />
@@ -120,8 +124,8 @@ function SearchForm () {
               </Form.Label>
               <Col sm={4}>
                 <Form.Select
-                  name="skill"
-                  disabled={values.criteria !== 'skill'}
+                  name="Skill"
+                  disabled={values.criteria !== 'Skill'}
                   value={values.skill}
                   onChange={handleChange}
                 >
@@ -137,7 +141,7 @@ function SearchForm () {
 
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ span: 10, offset: 2 }}>
-                <Button type="submit">Search</Button>
+                <Button type="submit" disabled={isSubmitting}>Search</Button>
               </Col>
             </Form.Group>
           </Form>

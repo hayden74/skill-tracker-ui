@@ -7,7 +7,13 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: builder => ({
     getProfiles: builder.query({
-      query: () => '/admin/Skill/REACT?page=0&size=5'
+      query: (arg) => {
+        const { page, size, criteria, keyword } = arg
+        return {
+          url: `/admin/${criteria}/${keyword}`,
+          params: { page, size }
+        }
+      }
     })
   })
 })
