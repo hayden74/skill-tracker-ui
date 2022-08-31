@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-//import data from '../../app/data.json'
 import { client } from '../../api/client'
 
 const initialState = {
@@ -41,4 +40,4 @@ export const { profileAdded } = profileSlice.actions
 
 export default profileSlice.reducer
 
-export const selectAllProfiles = state => state.profiles.items
+export const searchProfiles = state => state.profiles.items

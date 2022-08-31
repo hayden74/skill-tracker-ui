@@ -1,25 +1,30 @@
-import ProfileList from './ProfilesList'
-import { useGetProfilesQuery } from '../../api/apiSlice'
-import DefaultSpinner from '../../components/DefaultSpinner'
-import { Alert } from 'react-bootstrap'
 import SearchForm from './SearchForm'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProfiles, searchProfiles } from './profileSlice'
+import { useEffect } from 'react'
+import DefaultSpinner from '../../components/DefaultSpinner'
+import ProfileList from './ProfilesList'
+import { Alert } from 'react-bootstrap'
 
 function Profile () {
-  const {
-    data,
-    isLoading,
-    isSuccess,
-    isError,
-    error
-  } = useGetProfilesQuery({ page: 0, size: 5, criteria: 'Skill', keyword: 'AWS' })
+  const dispatch = useDispatch()
+  const profiles = useSelector(searchProfiles)
 
-  let content
+  const profilesStatus = useSelector(state => state.profiles.status)
+  const error = useSelector(state => state.profiles.error)
 
-  if (isLoading) {
+  useEffect(() => {
+    if (profilesStatus === 'idle') {
+      dispatch(fetchProfiles({ page: 0, size: 5, criteria: 'Skill', keyword: 'AWS' }))
+    }
+  }, [profilesStatus, dispatch])
+
+  let content = ''
+  if (profilesStatus === 'loading') {
     content = <DefaultSpinner text="Loading..."/>
-  } else if (isSuccess) {
-    content = <ProfileList profiles={data.profiles}/>
-  } else if (isError) {
+  } else if (profilesStatus === 'succeeded') {
+    content = <ProfileList profiles={profiles}/>
+  } else if (profilesStatus === 'failed') {
     const msg = error.error ? error.error : error.data.message
     content = <Alert key={'warning'} variant={'warning'}>
       <strong>Error occurred:</strong> {msg}
