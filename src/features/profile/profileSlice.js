@@ -7,8 +7,9 @@ const initialState = {
   error: null
 }
 
-export const fetchProfiles = createAsyncThunk('profiles/searchProfiles', async () => {
-  const response = await client.get('admin/Skill/REACT?page=0&size=5')
+export const fetchProfiles = createAsyncThunk('profiles/loadedProfiles', async (args) => {
+  const { page, size, criteria, keyword } = args
+  const response = await client.get(`admin/${criteria}/${keyword}?page=${page}&size=${size}`)
   return response.data.profiles
 })
 
@@ -40,4 +41,4 @@ export const { profileAdded } = profileSlice.actions
 
 export default profileSlice.reducer
 
-export const searchProfiles = state => state.profiles.items
+export const loadedProfiles = state => state.profiles.items

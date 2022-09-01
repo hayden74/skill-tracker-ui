@@ -1,21 +1,25 @@
 import SearchForm from './SearchForm'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProfiles, searchProfiles } from './profileSlice'
+import { fetchProfiles, loadedProfiles } from './profileSlice'
 import { useEffect } from 'react'
 import DefaultSpinner from '../../components/DefaultSpinner'
 import ProfileList from './ProfilesList'
 import { Alert } from 'react-bootstrap'
 
+export const searchProfiles = (options) => (dispatch) => {
+  dispatch(fetchProfiles(options))
+}
+
 function Profile () {
   const dispatch = useDispatch()
-  const profiles = useSelector(searchProfiles)
+  const profiles = useSelector(loadedProfiles)
 
   const profilesStatus = useSelector(state => state.profiles.status)
   const error = useSelector(state => state.profiles.error)
 
   useEffect(() => {
     if (profilesStatus === 'idle') {
-      dispatch(fetchProfiles({ page: 0, size: 5, criteria: 'Skill', keyword: 'AWS' }))
+      // searchProfiles({ page: 0, size: 5, criteria: 'skill', keyword: 'AWS' })(dispatch)
     }
   }, [profilesStatus, dispatch])
 
@@ -34,7 +38,7 @@ function Profile () {
   return (
     <>
       <h2>Profiles home</h2>
-      <SearchForm/>
+      <SearchForm dispatch={dispatch}/>
       {content}
     </>
   )

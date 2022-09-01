@@ -1,5 +1,5 @@
 import ProfileCard from './ProfileCard'
-import { Stack } from 'react-bootstrap'
+import { Alert, Stack } from 'react-bootstrap'
 
 function ProfileList ({ profiles }) {
   const content = profiles.map(profile => (
@@ -7,6 +7,9 @@ function ProfileList ({ profiles }) {
   ))
   return (
     <>
+      {profiles.length === 0 && <Alert key={'warning'} variant={'warning'}>
+        <strong>No records found</strong>
+      </Alert>}
       <Stack gap={3}>
         {content}
       </Stack>
