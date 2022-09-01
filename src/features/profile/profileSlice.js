@@ -4,13 +4,21 @@ import { client } from '../../api/client'
 const initialState = {
   items: [],
   status: 'idle',
-  error: null
+  error: null,
+  totalItems: 0,
+  activePage: 1,
+  searchCriteria: { criteria: 'skill', keyword: 'AWS' }
 }
 
 export const fetchProfiles = createAsyncThunk('profiles/loadedProfiles', async (args) => {
   const { page, size, criteria, keyword } = args
   const response = await client.get(`admin/${criteria}/${keyword}?page=${page}&size=${size}`)
-  return response.data.profiles
+  return {
+    data: response.data,
+    headers: Object.fromEntries(response.headers.entries()),
+    activePage: page,
+    searchCriteria: { criteria, keyword }
+  }
 })
 
 const profileSlice = createSlice({
@@ -27,8 +35,12 @@ const profileSlice = createSlice({
         state.status = 'loading'
       })
       .addCase(fetchProfiles.fulfilled, (state, action) => {
+        const { data, headers, activePage, searchCriteria } = action.payload
         state.status = 'succeeded'
-        state.items = action.payload
+        state.items = data.profiles
+        state.totalItems = parseInt(headers['x-total-count'], 10)
+        state.activePage = activePage
+        state.searchCriteria = searchCriteria
       })
       .addCase(fetchProfiles.rejected, (state, action) => {
         state.status = 'failed'

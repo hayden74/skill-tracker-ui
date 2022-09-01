@@ -4,7 +4,9 @@
 const API_URL = 'http://localhost:9090/skill-tracker/api/v1/'
 
 export async function client (endpoint, { body, ...customConfig } = {}) {
-  const headers = { 'Content-Type': 'application/json' }
+  const headers = {
+    'Content-Type': 'application/json'
+  }
 
   const config = {
     method: body ? 'POST' : 'GET',
@@ -24,7 +26,6 @@ export async function client (endpoint, { body, ...customConfig } = {}) {
     const response = await window.fetch(endpoint, config)
     data = await response.json()
     if (response.ok) {
-      // Return a result object similar to Axios
       return {
         status: response.status,
         data,
