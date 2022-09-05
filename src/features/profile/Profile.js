@@ -41,7 +41,7 @@ function Profile () {
 
   return (
     <>
-      <h2>Profiles home</h2>
+      <h2>Admin view</h2>
       <SearchForm dispatch={dispatch}/>
       <ListPagination
         maxPerPage={5}
