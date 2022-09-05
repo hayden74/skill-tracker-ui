@@ -6,10 +6,10 @@ import Button from 'react-bootstrap/Button'
 import { getTechnicalSkills } from '../../constant/Skills'
 
 const schema = yup.object().shape({
-  name: yup.string().required,
-  mobile: yup.string().required,
-  associateId: yup.string().required,
-  email: yup.string().required,
+  name: yup.string().required(),
+  mobile: yup.string().required(),
+  associateId: yup.string().required(),
+  email: yup.string().required(),
   tech_skills: yup.array()
 })
 
