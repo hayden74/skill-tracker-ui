@@ -5,13 +5,21 @@ import * as yup from 'yup'
 import Button from 'react-bootstrap/Button'
 import { getTechnicalSkills } from '../../constant/Skills'
 
+const techSkills = {}
+getTechnicalSkills().map(skill =>
+  Object.assign(techSkills, { [skill]: yup.string().required() })
+)
+
+console.log(techSkills)
 const schema = yup.object().shape({
   name: yup.string().required(),
   mobile: yup.string().required(),
   associateId: yup.string().required(),
-  email: yup.string().required(),
-  tech_skills: yup.array()
+  email: yup.string().email().required(),
+  techSkills
 })
+
+console.log(schema)
 
 function AddProfile () {
   return (
@@ -20,14 +28,33 @@ function AddProfile () {
       <Formik
         validationSchema={schema}
         onSubmit={async (values) => {
-          console.log('form submitted: ', values)
+          const new_values = values.techSkills.map(value => {
+            const key = Object.keys(value)[0]
+            return {
+              name: key,
+              skillType: 'TECHNICAL_SKILL',
+              level: value[key],
+            }
+          })
+          console.log('form submitted: ', JSON.stringify(new_values, null, 1))
         }}
         initialValues={{
-          name: '',
-          mobile: '',
-          email: '',
-          associateId: '',
-          tech_skills: [],
+          name: 'sss',
+          mobile: '0402471056',
+          email: 'ddd@fff.com',
+          associateId: '234234234',
+          techSkills: [ // TODO: the below incorrect 
+            { 'HTML_CSS_JAVASCRIPT': '1' },
+            { 'ANGULAR': '2' },
+            { 'REACT': '3' },
+            { 'SPRING': '4' },
+            { 'RESTFUL': '5' },
+            { 'HIBERNATE': '6' },
+            { 'GIT': '7' },
+            { 'DOCKER': '8' },
+            { 'JENKINS': '9' },
+            { 'AWS': '10' }
+          ],
         }}
       >
         {props => {
@@ -120,7 +147,7 @@ function AddProfile () {
                 <Col sm={4}>
                   <h6>Technical Skills</h6>
                   <FieldArray
-                    name="tech_skills"
+                    name="techSkills"
                     render={({ insert, remove, push }) => (
 
                       getTechnicalSkills().map((skill, index) =>
@@ -131,7 +158,8 @@ function AddProfile () {
                             </Form.Label>
                             <Col sm={6}>
                               <Form.Control
-                                name={`tech_skills.${index}.${skill}`}
+                                name={`techSkills.${index}.${skill}`}
+                                value={values.techSkills[`${index}`][`${skill}`]}
                                 type="text"
                                 onChange={handleChange}
                               />
@@ -139,7 +167,6 @@ function AddProfile () {
                           </Form.Group>
                         </div>
                       )
-
                     )}
                   />
 
