@@ -1,25 +1,25 @@
 import Form from 'react-bootstrap/Form'
 import { Col, Row } from 'react-bootstrap'
-import { FieldArray, Formik } from 'formik'
+import { Formik } from 'formik'
 import * as yup from 'yup'
 import Button from 'react-bootstrap/Button'
 import { getTechnicalSkills } from '../../constant/Skills'
 
+const skills = getTechnicalSkills()
 const techSkills = {}
-getTechnicalSkills().map(skill =>
-  Object.assign(techSkills, { [skill]: yup.string().required() })
-)
-
-console.log(techSkills)
-const schema = yup.object().shape({
-  name: yup.string().required(),
-  mobile: yup.string().required(),
-  associateId: yup.string().required(),
-  email: yup.string().email().required(),
-  techSkills
+const skillValues = {}
+skills.forEach(skill => {
+  Object.assign(techSkills, { [skill]: yup.string().required('Enter a value between 0 and 20') })
+  Object.assign(skillValues, { [skill]: '3' })
 })
 
-console.log(schema)
+const schema = yup.object().shape({
+  name: yup.string().min(5, 'Min 5 chars').max(30, 'Max 30 chars').required(),
+  mobile: yup.string().min(10, 'Min 10 chars').max(10, 'Max 10 chars').matches(/^\d+$/, 'Numeric only').required(),
+  associateId: yup.string().min(5, 'Min 5 chars').max(30, 'Max 30 chars').matches(/^CTS.+/, 'Must starts with CTS').required(),
+  email: yup.string().email('Invalid email').required(),
+  ...techSkills
+})
 
 function AddProfile () {
   return (
@@ -43,18 +43,7 @@ function AddProfile () {
           mobile: '0402471056',
           email: 'ddd@fff.com',
           associateId: '234234234',
-          techSkills: [ // TODO: the below incorrect 
-            { 'HTML_CSS_JAVASCRIPT': '1' },
-            { 'ANGULAR': '2' },
-            { 'REACT': '3' },
-            { 'SPRING': '4' },
-            { 'RESTFUL': '5' },
-            { 'HIBERNATE': '6' },
-            { 'GIT': '7' },
-            { 'DOCKER': '8' },
-            { 'JENKINS': '9' },
-            { 'AWS': '10' }
-          ],
+          ...skillValues
         }}
       >
         {props => {
@@ -146,29 +135,29 @@ function AddProfile () {
 
                 <Col sm={4}>
                   <h6>Technical Skills</h6>
-                  <FieldArray
-                    name="techSkills"
-                    render={({ insert, remove, push }) => (
 
-                      getTechnicalSkills().map((skill, index) =>
-                        <div key={`skill-${index}`}>
-                          <Form.Group as={Row} className="mb-3" controlId={`addProfileFormTechSkill-${skill}`}>
-                            <Form.Label column sm={4}>
-                              {skill}
-                            </Form.Label>
-                            <Col sm={6}>
-                              <Form.Control
-                                name={`techSkills.${index}.${skill}`}
-                                value={values.techSkills[`${index}`][`${skill}`]}
-                                type="text"
-                                onChange={handleChange}
-                              />
-                            </Col>
-                          </Form.Group>
-                        </div>
-                      )
-                    )}
-                  />
+                  {skills.map((skill, index) => {
+                    return (
+                      <div key={index}>
+                        <Form.Group as={Row} className="mb-3" controlId={`addProfileForm${skill}`}>
+                          <Form.Label column sm={4}>
+                            {skill}
+                          </Form.Label>
+                          <Col sm={8}>
+                            <Form.Control
+                              name={`${skill}`}
+                              type="text"
+                              value={values[skill]}
+                              onChange={handleChange}
+                              isInvalid={!!errors[skill] && touched[skill]}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                              {errors[skill]}
+                            </Form.Control.Feedback>
+                          </Col>
+                        </Form.Group>
+                      </div>)
+                  })}
 
                 </Col>
                 <Col sm={4}>
