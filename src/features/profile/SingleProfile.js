@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import * as yup from 'yup'
 import Button from 'react-bootstrap/Button'
 import { getNonTechnicalSkills, getTechnicalSkills } from '../../constant/Skills'
-import { addProfile } from './profileSlice'
+import { addProfile, updateProfile } from './profileSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ProfileCard from './ProfileCard'
 import { useState } from 'react'
@@ -73,7 +73,7 @@ function SingleProfile () {
       }
       {(!profile || editMode) &&
       <>
-        <h2>Add profile</h2>
+        <h2>{editMode ? 'Edit' : 'Add'} profile</h2>
         <Formik
           validationSchema={schema}
           onSubmit={async (values, actions) => {
@@ -101,7 +101,12 @@ function SingleProfile () {
                 })
               }
             })
-            dispatch(addProfile(submitRequest))
+            if (editMode) {
+              submitRequest.id = profile.id
+              dispatch(updateProfile(submitRequest))
+            } else {
+              dispatch(addProfile(submitRequest))
+            }
             setEditMode(false)
           }}
           initialValues={initialValues}
@@ -120,6 +125,21 @@ function SingleProfile () {
                 <Row>
                   <Col sm={4}>
                     <h6>Profile details</h6>
+
+                    {editMode && <Form.Group as={Row} className="mb-3" controlId="addProfileFormName">
+                      <Form.Label column sm={4}>
+                        ID
+                      </Form.Label>
+                      <Col sm={8}>
+                        <Form.Control
+                          name="id"
+                          type="text"
+                          value={profile.id}
+                          disabled
+                        />
+                      </Col>
+                    </Form.Group>}
+
                     <Form.Group as={Row} className="mb-3" controlId="addProfileFormName">
                       <Form.Label column sm={4}>
                         Name

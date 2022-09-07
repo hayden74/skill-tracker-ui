@@ -1,4 +1,9 @@
 import { Card, Col, Row, Table } from 'react-bootstrap'
+import moment from 'moment'
+
+const formatDate = (date) => {
+  return moment(date).format('DD/MM/YYYY kk:mm:ss')
+}
 
 function AssociateCard ({ profile }) {
   return (
@@ -30,14 +35,14 @@ function AssociateCard ({ profile }) {
                   <td>Mobile</td>
                   <td>{profile.mobile}</td>
                 </tr>
-                <tr>
+                {profile.createdAt && <tr>
                   <td>Create date</td>
-                  <td>TBA</td>
-                </tr>
-                <tr>
+                  <td>{formatDate(profile.createdAt)}</td>
+                </tr>}
+                {profile.updatedAt && <tr>
                   <td>Update date</td>
-                  <td>TBA</td>
-                </tr>
+                  <td>{formatDate(profile.updatedAt)}</td>
+                </tr>}
                 </tbody>
               </Table>
             </Col>

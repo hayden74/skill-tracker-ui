@@ -11,10 +11,18 @@ const initialState = {
   searchCriteria: { criteria: 'skill', keyword: 'AWS' }
 }
 
-export const addProfile = createAsyncThunk('profiles/addProfile', async (args) => {
-  const response = await client.post(`engineer/add-profile`, args)
+export const addProfile = createAsyncThunk('profiles/addProfile', async (profile) => {
+  const response = await client.post(`engineer/add-profile`, profile)
   return {
-    data: { ...args, id: response.data.id },
+    data: { ...profile, id: response.data.id },
+    error: response.data.errors
+  }
+})
+
+export const updateProfile = createAsyncThunk('profiles/updateProfile/', async (profile) => {
+  const response = await client.put(`engineer/update-profile/${profile.id}`, profile)
+  return {
+    data: profile,
     error: response.data.errors
   }
 })
@@ -67,7 +75,19 @@ const profileSlice = createSlice({
         const { data } = action.payload
         state.status = 'succeeded'
         state.profile = data
-        console.log(state.profile)
+      })
+      .addCase(updateProfile.pending, (state, action) => {
+        state.status = 'submitting'
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        const { data } = action.payload
+        state.status = 'succeeded'
+        state.profile = data
+        console.log(data)
       })
   }
 })
