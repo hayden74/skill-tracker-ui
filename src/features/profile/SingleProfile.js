@@ -7,6 +7,7 @@ import { getNonTechnicalSkills, getTechnicalSkills } from '../../constant/Skills
 import { addProfile } from './profileSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ProfileCard from './ProfileCard'
+import { useState } from 'react'
 
 const techSkills = getTechnicalSkills()
 const nonTechSkills = getNonTechnicalSkills()
@@ -29,23 +30,48 @@ const schema = yup.object().shape({
   ...skills
 })
 
-function AddProfile () {
-  const status = useSelector(state => state.profiles.status)
+let initialValues = {
+  name: 'Hayden Adams',
+  mobile: '0402471056',
+  email: 'ddd@fff.com',
+  associateId: 'CTS234234234',
+  ...skillValues,
+}
+
+const buildFromProfile = (profile) => {
+  const profileValues = {
+    name: profile.name,
+    mobile: profile.mobile,
+    email: profile.email,
+    associateId: profile.associateId,
+  }
+  profile.skills.forEach(skill => {
+    Object.assign(profileValues, { [skill.name]: skill.level })
+  })
+  console.log(profileValues)
+  return profileValues
+}
+
+function SingleProfile () {
+  const [editMode, setEditMode] = useState(false)
   const profile = useSelector(state => state.profiles.profile)
 
   const dispatch = useDispatch()
   return (
     <>
-      {status === 'succeeded' &&
+      {profile && !editMode &&
       <>
         <h2>View profile</h2>
         <ProfileCard key={profile.id} profile={profile}/>
         <Col>
-          <Button type="button">Edit Profile</Button>
+          <Button type="button" onClick={() => {
+            setEditMode(true)
+            initialValues = buildFromProfile(profile)
+          }}>Edit Profile</Button>
         </Col>
       </>
       }
-      {status === 'idle' &&
+      {(!profile || editMode) &&
       <>
         <h2>Add profile</h2>
         <Formik
@@ -76,17 +102,9 @@ function AddProfile () {
               }
             })
             dispatch(addProfile(submitRequest))
-            if (status === 'succeeded') {
-              actions.resetForm()
-            }
+            setEditMode(false)
           }}
-          initialValues={{
-            name: 'Hayden Adams',
-            mobile: '0402471056',
-            email: 'ddd@fff.com',
-            associateId: 'CTS234234234',
-            ...skillValues,
-          }}
+          initialValues={initialValues}
         >
           {props => {
             const {
@@ -243,4 +261,4 @@ function AddProfile () {
   )
 }
 
-export default AddProfile
+export default SingleProfile

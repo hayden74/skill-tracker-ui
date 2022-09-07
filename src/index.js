@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Profile from './features/profile/Profile'
-import AddProfile from './features/profile/AddProfile'
+import SingleProfile from './features/profile/SingleProfile'
 
 const container = document.getElementById('root')
 const root = createRoot(container)
@@ -19,7 +19,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App/>}>
             <Route index element={<Profile/>}/>
-            <Route path="associate-view" element={<AddProfile/>}/>
+            <Route path="associate-view" element={<SingleProfile/>}/>
             <Route path="admin-view" element={<Profile/>}/>
           </Route>
         </Routes>
