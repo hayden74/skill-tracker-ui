@@ -11,6 +11,10 @@ function AssociateCard ({ profile }) {
               <Table striped bordered size="sm">
                 <tbody>
                 <tr>
+                  <td>ID</td>
+                  <td>{profile.id}</td>
+                </tr>
+                <tr>
                   <td>Associate ID</td>
                   <td>{profile.associateId}</td>
                 </tr>
@@ -25,6 +29,14 @@ function AssociateCard ({ profile }) {
                 <tr>
                   <td>Mobile</td>
                   <td>{profile.mobile}</td>
+                </tr>
+                <tr>
+                  <td>Create date</td>
+                  <td>TBA</td>
+                </tr>
+                <tr>
+                  <td>Update date</td>
+                  <td>TBA</td>
                 </tr>
                 </tbody>
               </Table>

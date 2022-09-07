@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { client } from '../../api/client'
 
 const initialState = {
+  profile: null,
   items: [],
   status: 'idle',
   error: null,
@@ -10,6 +11,14 @@ const initialState = {
   searchCriteria: { criteria: 'skill', keyword: 'AWS' }
 }
 
+export const addProfile = createAsyncThunk('profiles/addProfile', async (args) => {
+  const response = await client.post(`engineer/add-profile`, args)
+  return {
+    data: { ...args, id: response.data.id },
+    error: response.data.errors
+  }
+})
+
 export const fetchProfiles = createAsyncThunk('profiles/loadedProfiles', async (args) => {
   const { page, size, criteria, keyword } = args
   const response = await client.get(`admin/${criteria}/${keyword}?page=${page}&size=${size}`)
@@ -17,7 +26,8 @@ export const fetchProfiles = createAsyncThunk('profiles/loadedProfiles', async (
     data: response.data,
     headers: Object.fromEntries(response.headers.entries()),
     activePage: page,
-    searchCriteria: { criteria, keyword }
+    searchCriteria: { criteria, keyword },
+    error: response.data.errors
   }
 })
 
@@ -25,8 +35,8 @@ const profileSlice = createSlice({
   name: 'profiles',
   initialState,
   reducers: {
-    profileAdded (state, action) {
-      state.push(action.payload)
+    resetStatus (state) {
+      state.status = 'idle'
     },
   },
   extraReducers (builder) {
@@ -46,10 +56,23 @@ const profileSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
+      .addCase(addProfile.pending, (state, action) => {
+        state.status = 'submitting'
+      })
+      .addCase(addProfile.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+      .addCase(addProfile.fulfilled, (state, action) => {
+        const { data } = action.payload
+        state.status = 'succeeded'
+        state.profile = data
+        console.log(state.profile)
+      })
   }
 })
 
-export const { profileAdded } = profileSlice.actions
+export const { resetStatus } = profileSlice.actions
 
 export default profileSlice.reducer
 
