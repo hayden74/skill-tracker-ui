@@ -15,11 +15,11 @@ const skills = {}
 const skillValues = {}
 techSkills.forEach(skill => {
   Object.assign(skills, { [skill]: yup.string().required('Enter a value between 0 and 20') })
-  Object.assign(skillValues, { [skill]: '12' })
+  Object.assign(skillValues, { [skill]: '' })
 })
 nonTechSkills.forEach(skill => {
   Object.assign(skills, { [skill]: yup.string().required('Enter a value between 0 and 20') })
-  Object.assign(skillValues, { [skill]: '15' })
+  Object.assign(skillValues, { [skill]: '' })
 })
 
 const schema = yup.object().shape({
@@ -31,12 +31,20 @@ const schema = yup.object().shape({
 })
 
 let initialValues = {
+  name: '',
+  mobile: '',
+  email: '',
+  associateId: '',
+  ...skillValues,
+}
+
+/*let initialValues = {
   name: 'Hayden Adams',
   mobile: '0402471056',
   email: 'ddd@fff.com',
   associateId: 'CTS234234234',
   ...skillValues,
-}
+}*/
 
 const buildFromProfile = (profile) => {
   const profileValues = {

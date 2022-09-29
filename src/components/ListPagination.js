@@ -8,13 +8,13 @@ const ListPagination = props => {
   }
 
   const setPage = page => props.onSetPage(page)
-
+  let noPages = Math.ceil(props.count / maxPerPage)
   let items = []
-  for (let number = 0; number < Math.ceil(props.count / maxPerPage); ++number) {
+  for (let number = 0; number < noPages; ++number) {
     items.push(
       <Pagination.Item key={number} active={number === props.currentPage}
                        onClick={(event) => setPage(event.target)}>
-        {number + 1}
+        <div className={`${number === noPages - 1 ? 'last' : 'none'}`}>{number + 1}</div>
       </Pagination.Item>,
     )
   }
