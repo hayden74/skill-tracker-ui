@@ -28,6 +28,22 @@ describe('Add, Edit and view profile', () => {
     server.close()
   })
 
+  it('shows errors when submitting new profile', async () => {
+    renderWithProviders(<SingleProfile/>, {
+      preloadedState: {
+        profiles: { profile: null }
+      }
+    })
+
+    await user.click(screen.getByRole('button', { name: /Submit/i }))
+    await waitFor(() => {
+      ['name', 'email', 'associateId', 'mobile'].forEach(field => {
+        expect(screen.getByText(`${field} is a required field`)).toBeInTheDocument()
+      })
+      expect(screen.getAllByText('Enter a value between 0 and 20')).toHaveLength(13)
+    })
+  })
+
   it('add a profile correctly', async () => {
     renderWithProviders(<SingleProfile/>, {
       preloadedState: {
@@ -99,22 +115,6 @@ describe('Add, Edit and view profile', () => {
 
     await waitFor(() => {
       expect(screen.getByText('hayden.adams@cognizant.com')).toBeInTheDocument()
-    })
-  })
-
-  it('shows errors when submitting new profile', async () => {
-    renderWithProviders(<SingleProfile/>, {
-      preloadedState: {
-        profiles: { profile: null }
-      }
-    })
-
-    await user.click(screen.getByRole('button', { name: /Submit/i }))
-    await waitFor(() => {
-      ['name', 'email', 'associateId', 'mobile'].forEach(field => {
-        expect(screen.getByText(`${field} is a required field`)).toBeInTheDocument()
-      })
-      expect(screen.getAllByText('Enter a value between 0 and 20')).toHaveLength(13)
     })
   })
 
