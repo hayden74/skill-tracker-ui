@@ -5,7 +5,7 @@ import data from '../../../app/data.json'
 it('renders profile card correctly', async () => {
   render(<ProfileCard profile={data[0]}/>)
   // eslint-disable-next-line testing-library/no-debugging-utils
-  screen.debug()
+  // screen.debug()
   expect(screen.getByText('f327eb8a-8aff-4bb6-be53-635bcafa448a')).toBeInTheDocument()
   expect(screen.getByText('John Smith')).toBeInTheDocument()
   expect(screen.getByText('0402471001')).toBeInTheDocument()

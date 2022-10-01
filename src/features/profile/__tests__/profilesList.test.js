@@ -5,7 +5,7 @@ import ProfilesList from '../ProfilesList'
 it('renders profileList correctly', async () => {
   render(<ProfilesList profiles={data}/>)
   // eslint-disable-next-line testing-library/no-debugging-utils
-  screen.debug()
+  //screen.debug()
   const profiles = screen.getAllByRole('row')
   expect(profiles).toHaveLength(110)
 })

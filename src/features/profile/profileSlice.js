@@ -87,7 +87,6 @@ const profileSlice = createSlice({
         const { data } = action.payload
         state.status = 'succeeded'
         state.profile = data
-        console.log(data)
       })
   }
 })

@@ -4,7 +4,7 @@
     "name": "John Smith",
     "mobile": "0402471001",
     "email": "john.smith@cognizant.com",
-    "associateId": "2020100",
+    "associateId": "CTS2020100",
     "skills": [
       {
         "name": "SPRING",
@@ -80,7 +80,7 @@
     "name": "Hayden Adams",
     "mobile": "0402471002",
     "email": "hayden.adams@cognizant.com",
-    "associateId": "2020101",
+    "associateId": "CTS2020101",
     "skills": [
       {
         "name": "ATTITUDE",
@@ -156,7 +156,7 @@
     "name": "Michael Kumar",
     "mobile": "0402471003",
     "email": "michael.kumar@cognizant.com",
-    "associateId": "2020202",
+    "associateId": "CTS2020202",
     "skills": [
       {
         "name": "GIT",
@@ -232,7 +232,7 @@
     "name": "Maya Janabi",
     "mobile": "0402471005",
     "email": "maya.janabi@cognizant.com",
-    "associateId": "2020203",
+    "associateId": "CTS2020203",
     "skills": [
       {
         "name": "ATTITUDE",
@@ -308,7 +308,7 @@
     "name": "Sadam Ali",
     "mobile": "0402471006",
     "email": "sadam.ali@cognizant.com",
-    "associateId": "2020204",
+    "associateId": "CTS2020204",
     "skills": [
       {
         "name": "ATTITUDE",

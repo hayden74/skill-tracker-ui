@@ -40,7 +40,7 @@ let initialValues = {
 
 /*let initialValues = {
   name: 'Hayden Adams',
-  mobile: '0402471056',
+  mobile: '0402471000',
   email: 'ddd@fff.com',
   associateId: 'CTS234234234',
   ...skillValues,
@@ -56,7 +56,6 @@ const buildFromProfile = (profile) => {
   profile.skills.forEach(skill => {
     Object.assign(profileValues, { [skill.name]: skill.level })
   })
-  console.log(profileValues)
   return profileValues
 }
 
@@ -133,7 +132,6 @@ function SingleProfile () {
                 <Row>
                   <Col sm={4}>
                     <h6>Profile details</h6>
-
                     {editMode && <Form.Group as={Row} className="mb-3" controlId="addProfileFormName">
                       <Form.Label column sm={4}>
                         ID
